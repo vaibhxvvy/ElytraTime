@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FlightEquipmentTest {
@@ -84,5 +85,10 @@ public class FlightEquipmentTest {
         FlightEquipment.registerDetector(candidate -> candidate.is(Items.DEBUG_STICK));
 
         assertTrue(FlightEquipment.isFlightEquipment(stack));
+    }
+
+    @Test
+    void nullDetectorIsRejectedAtRegistration() {
+        assertThrows(NullPointerException.class, () -> FlightEquipment.registerDetector(null));
     }
 }

@@ -1,6 +1,7 @@
 package yes.mediumdifficulty.elytratime;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.core.component.DataComponents;
@@ -58,6 +59,6 @@ public final class FlightEquipment {
 
     /** Registers a {@link Detector}. Safe to call from any mod's init; not cancellable. */
     public static void registerDetector(Detector detector) {
-        DETECTORS.add(detector);
+        DETECTORS.add(Objects.requireNonNull(detector, "detector"));
     }
 }
