@@ -3,7 +3,6 @@ package yes.mediumdifficulty.elytratime;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import java.util.Optional;
 
@@ -27,10 +26,10 @@ public class Util {
     public static Optional<ItemStack> findElytra(Player player) {
         var slot = EquipmentSlot.CHEST.getIndex(36);
 
-        var chestPlate = player.getInventory().getItem(slot);
+        var chestItem = player.getInventory().getItem(slot);
 
-        if (chestPlate.getItem() == Items.ELYTRA)
-            return Optional.of(chestPlate);
+        if (FlightEquipment.isFlightEquipment(chestItem))
+            return Optional.of(chestItem);
 
         return Optional.empty();
     }

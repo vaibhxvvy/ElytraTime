@@ -15,11 +15,11 @@ public class TimeDetails {
         int totalTime = timeRemaining(unbreaking, item.getMaxDamage());
 
         absolute = timeRemaining(unbreaking, item.getMaxDamage() - item.getDamageValue());
-        fraction = (float)absolute/(float)totalTime;
+        fraction = totalTime <= 0 ? 0.0f : (float) absolute / (float) totalTime;
     }
 
     public static int timeRemaining(int unbreaking, int durabilityRemaining) {
-        return (durabilityRemaining * (unbreaking + 1)) - 1;
+        return Math.max(0, (durabilityRemaining * (unbreaking + 1)) - 1);
     }
 
     private static int getUnbreakingLevel(ItemStack item, Level level) {
